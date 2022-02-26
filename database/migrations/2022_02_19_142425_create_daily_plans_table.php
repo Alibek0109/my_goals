@@ -17,8 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
+            $table->integer('user_id');
             $table->integer('done')->default(0);
-            
+
 
             $table->softDeletes();
             $table->timestamps();

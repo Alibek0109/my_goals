@@ -15,6 +15,11 @@
                     Create daily plan
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('home.daily.recycle_bin') }}" class="nav-link text-white">
+                    Recycle bin
+                </a>
+            </li>
             <hr>
         </div>
 

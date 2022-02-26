@@ -10,7 +10,7 @@ class DailyPlan extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    
+
     protected $table = 'daily_plans';
-    protected $guard = false;
+    protected $guarded = false;
 }

@@ -17,14 +17,24 @@ Route::middleware('guest')->group(function () {
 
 Route::group(['middleware' => 'auth', 'prefix' => 'home'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
-    
+
     Route::controller(DailyController::class)->prefix('daily')->group(function () {
         Route::get('/', 'index')->name('home.daily.index');
         Route::get('/create', 'create')->name('home.daily.create');
         Route::post('/', 'store')->name('home.daily.store');
+        Route::post('{id}/doneChange', 'doneChange')->name('home.daily.doneChange');
         Route::get('{id}/edit', 'edit')->name('home.daily.edit');
         Route::patch('{id}', 'update')->name('home.daily.update');
         Route::delete('{id}', 'destroy')->name('home.daily.destroy');
+        Route::post('/doneDestroy', 'doneDestroy')->name('home.daily.doneDestroy');
+        Route::post('/allDestroy', 'allDestroy')->name('home.daily.allDestroy');
+
+        // Мусорное ведро
+        Route::get('/recycle_bin', 'recycle_bin')->name('home.daily.recycle_bin');
+        Route::post('{id}/recycle_bin_restore', 'recycle_bin_restore')->name('home.daily.recycle_bin_restore');
+        Route::post('{id}/recycle_bin_destroy', 'recycle_bin_destroy')->name('home.daily.recycle_bin_destroy');
+        Route::post('/recycle_bin_restore_all', 'recycle_bin_restore_all')->name('home.daily.recycle_bin_restore_all');
+        Route::post('/recycle_bin_destroy_all', 'recycle_bin_destroy_all')->name('home.daily.recycle_bin_destroy_all');
     });
 
 });
