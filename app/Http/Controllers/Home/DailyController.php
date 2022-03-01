@@ -90,10 +90,10 @@ class DailyController extends ConfigController
 
     public function recycle_bin() {
         $dailyTrashed = DailyPlan::onlyTrashed()->where('user_id', Auth::id())->get();
-        $restoreDateSession =  DailyPlan::onlyTrashed()->whereDate("updated_at", '<=', Carbon::now()->subDays(1))
+        $deleteDateSession =  DailyPlan::onlyTrashed()->whereDate("updated_at", '<=', Carbon::now()->subDays(1))
         ->where('user_id', Auth::id())
         ->where('deleted_at', '!=', null)
-        ->restore();
+        ->delete();
         // 2022-02-26 07:17:05
         return view("home.daily.recycle_bin", ['data' => $dailyTrashed]);
     }
@@ -104,7 +104,7 @@ class DailyController extends ConfigController
     }
 
     public function recycle_bin_destroy($id) {
-        DailyPlan::where('id', $id)->forceDelete();
+        DailyPlan::withTrashed()->where('id', $id)->forceDelete();
         return redirect()->route('home.daily.recycle_bin')->with('success', 'Data was clear successfully');
     }
 

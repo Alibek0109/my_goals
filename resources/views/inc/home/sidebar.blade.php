@@ -41,8 +41,18 @@
         </div>
         <div class="theme-group">
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="{{route('home.plans.index')}}" class="nav-link text-white">
                     <h3 class="mb-0">Plans</h3>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('home.plans.create')}}" class="nav-link text-white">
+                    Create plan
+                </a>
+            </li>
+            <li>
+                <a href="{{route('home.plans.recycle_bin')}}" class="nav-link text-white">
+                    Recycle bin
                 </a>
             </li>
             <hr>
