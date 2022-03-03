@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Home\AdminController;
 use App\Http\Controllers\Home\DailyController;
 use App\Http\Controllers\Home\HomeController;
 use App\Http\Controllers\Home\PlansController;
@@ -18,6 +19,7 @@ Route::middleware('guest')->group(function () {
 
 Route::group(['middleware' => 'auth', 'prefix' => 'home'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('home.index');
+    Route::get('/admin', [AdminController::class, 'index'])->name('home.admin.index')->middleware('admin');
 
     Route::controller(DailyController::class)->prefix('daily')->group(function () {
         Route::get('/', 'index')->name('home.daily.index');
